@@ -41,6 +41,9 @@ void menu()
         case 2:
             remover();
             break;
+        case 4:
+            pesquisar();
+            break;
         case 5:
             listar();
             break;
@@ -101,6 +104,31 @@ void reprovados()
 }
 void pesquisar()
 {
+    char nome[50];
+    int op;
+    do
+    {
+        system("clear"); //linux
+        //system("cls"); //windows
+        printf("\nDigite o nome do aluno para pesquisar: ");
+        fgets(nome, sizeof(nome), stdin);
+        for (int i = 0; i < MAX_ALUNOS; i++)
+        {
+            if (strstr(alunos[i].nome, nome) != NULL)
+            {
+                printf("Matricula: %d\n", i + 1);
+                printf("Nome: %s\n", alunos[i].nome);
+                printf("1 Bim: %0.2f\n", alunos[i].notas[0]);
+                printf("2 Bim: %0.2f\n", alunos[i].notas[1]);
+                printf("3 Bim: %0.2f\n", alunos[i].notas[2]);
+                printf("4 Bim: %0.2f\n", alunos[i].notas[3]);
+                printf("-----------\n");
+            }
+        }
+        printf("\nDigite 0 para sair ou 1 para nova pesquisa: ");
+        scanf("%d", &op);
+        getchar();
+    } while (op != 0);
 }
 void listar()
 {
