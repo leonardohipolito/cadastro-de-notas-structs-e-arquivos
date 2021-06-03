@@ -13,6 +13,7 @@ Aluno alunos[MAX_ALUNOS];
 void menu();
 void cadastrar();
 void remover();
+void aprovados();
 void reprovados();
 void pesquisar();
 void listar();
@@ -30,7 +31,7 @@ void menu()
         //system("cls"); //windows
         printf("\n1 - Cadastrar aluno\n2 - Remover aluno");
         printf("\n3 - Alunos reprovados\n4 - Pesquisar aluno\n");
-        printf("\n5 - Listar alunos\n0 - Sair\n");
+        printf("\n5 - Listar alunos\n6 - Alunos Aprovados\n0 - Sair\n");
         scanf("%d", &op);
         getchar();
         switch (op)
@@ -41,11 +42,17 @@ void menu()
         case 2:
             remover();
             break;
+        case 3:
+            reprovados();
+            break;
         case 4:
             pesquisar();
             break;
         case 5:
             listar();
+            break;
+        case 6:
+            aprovados();
             break;
         }
         getchar();
@@ -86,6 +93,7 @@ void cadastrar()
 
         printf("\n1 - Continuar\n0 - Sair");
         scanf("%d", &op);
+        getchar();
     } while (op != 0);
 }
 void remover()
@@ -101,6 +109,55 @@ void remover()
 }
 void reprovados()
 {
+    system("clear"); //linux
+    //system("cls"); //windows
+    float media;
+    printf("\n LISTA DE ALUNOS REPROVADOS\n");
+    for (int i = 0; i < MAX_ALUNOS; i++)
+    {
+        if (alunos[i].ativo == 1)
+        {
+            media = 0;
+            media = alunos[i].notas[0] + alunos[i].notas[1] + alunos[i].notas[2] + alunos[i].notas[3];
+            media = media / 4;
+            if (media < 7.0)
+            {
+                printf("Matricula: %d\n", i + 1);
+                printf("Nome: %s\n", alunos[i].nome);
+                printf("1 Bim: %0.2f\n", alunos[i].notas[0]);
+                printf("2 Bim: %0.2f\n", alunos[i].notas[1]);
+                printf("3 Bim: %0.2f\n", alunos[i].notas[2]);
+                printf("4 Bim: %0.2f\n", alunos[i].notas[3]);
+                printf("-----------\n");
+            }
+        }
+    }
+}
+void aprovados()
+{
+    system("clear"); //linux
+    //system("cls"); //windows
+    float media;
+    printf("\n LISTA DE ALUNOS APROVADOS\n");
+    for (int i = 0; i < MAX_ALUNOS; i++)
+    {
+        if (alunos[i].ativo == 1)
+        {
+            media = 0;
+            media = alunos[i].notas[0] + alunos[i].notas[1] + alunos[i].notas[2] + alunos[i].notas[3];
+            media = media / 4;
+            if (media >= 7.0)
+            {
+                printf("Matricula: %d\n", i + 1);
+                printf("Nome: %s\n", alunos[i].nome);
+                printf("1 Bim: %0.2f\n", alunos[i].notas[0]);
+                printf("2 Bim: %0.2f\n", alunos[i].notas[1]);
+                printf("3 Bim: %0.2f\n", alunos[i].notas[2]);
+                printf("4 Bim: %0.2f\n", alunos[i].notas[3]);
+                printf("-----------\n");
+            }
+        }
+    }
 }
 void pesquisar()
 {
